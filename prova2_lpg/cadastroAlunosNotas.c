@@ -234,18 +234,16 @@ void alterarAluno(){
 			printf("Aluno: %s\n", alunos[i].nomeAluno);
 			printf("Novo nome: ");
 			fgets(novoNome, 50, stdin);
-			novoNome[strlen(novoNome) - 1] = '\0';
 			while(strlen(novoNome) <= 3){
 				printf("Digite um nome valido: ");
 				fgets(novoNome, 50, stdin);
-				novoNome[strlen(novoNome) - 1] = '\0';
 			}	
 			printf("Confirmar alteracao? [S]im ou [N]ao\n");
 			confirma = getchar();
 			confirma = toupper(confirma);
 			if(confirma == 'S'){
 				strcpy(alunos[i].nomeAluno, novoNome);
-				alunos[i].nomeAluno[strlen(alunos[i].nomeAluno) - 1] = '\0';;
+				alunos[i].nomeAluno[strlen(alunos[i].nomeAluno) - 1] = '\0';
 				printf("\nNome mudado com sucesso!\n");
 			}else if(confirma == 'N'){
 				printf("\nOperacao cancelada!\n");
@@ -270,7 +268,7 @@ void relatorioAluno(){
 	
 	int i, j;
 	char x = 'x';
-	printf("+-------------------------------------------------------------------------+\n");
+	printf("\n+-------------------------------------------------------------------------+\n");
 	printf("|\t\t\tRelatorio de alunos\t\t\t\t  |\n");
 	printf("+------+------------------------------------------------------------------+\n");
 	printf("|  ID  |  Nome\t\t\t\t\t\t    |\tExcluido  |\n");
@@ -433,7 +431,7 @@ void relatorioNotas(){
 	
 	
 	int i, j;
-	printf("+-----------------------------------------------------------------------------------+\n");
+	printf("\n+-----------------------------------------------------------------------------------+\n");
 	printf("|\t\t\t\tRelatorio de notas\t\t\t\t    |\n");
 	printf("+------+----------------------------------------------------+-------+-------+-------+\n");
 	printf("|  ID  |  Nome\t\t\t\t\t\t    |Nota 01|Nota 02|Nota 03|\n");
@@ -443,8 +441,11 @@ void relatorioNotas(){
 			printf("|   %d  |", alunos[i].idAluno);
 			printf("  %-50s", alunos[i].nomeAluno);
 			for(j = 0; j < qtdNotas; j++){
-				if((notas[j].idAluno == alunos[i].idAluno)){
+				if((notas[j].idAluno == alunos[i].idAluno) && (alunos[i].qtdNotasAluno != 0)){
 					printf("| %5.2f ",  notas[j].valorNota);
+				}else if(alunos[i].qtdNotasAluno == 0){
+					printf("|       |       |       ");
+					break;
 				}
 			}
 			printf("|\n");
@@ -465,7 +466,7 @@ void relatorioMedia(){
 	
 	int i, j;
 	float soma;
-	printf("+-------------------------------------------------------------------------+\n");
+	printf("\n+-------------------------------------------------------------------------+\n");
 	printf("|\t\t\tRelatorio de medias\t\t\t\t  |\n");
 	printf("+------+------------------------------------------------------------------+\n");
 	printf("|  ID  |  Nome\t\t\t\t\t\t    |\tMedia     |\n");
