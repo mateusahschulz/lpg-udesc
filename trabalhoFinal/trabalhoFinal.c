@@ -67,6 +67,7 @@ void carregarAlunos(Aluno *alunos){
 		alunos[contador].deleted = 0;
 		contador++;
 	}
+	fclose(arq);
 }
 
 void consultarAluno(Aluno *alunos){ 
